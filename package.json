@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bhagatabhijeet/empdir/issues"
   },
-  "homepage": "https://github.com/bhagatabhijeet/empdir#readme"
+  "homepage": "https://github.com/bhagatabhijeet/empdir#readme",
+  "dependencies": {
+    "faker": "^5.1.0"
+  }
 }
