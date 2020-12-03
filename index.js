@@ -16,6 +16,7 @@ mongoose.set('debug', true);
 const PORT=process.env.PORT||3001;
 const app=express();
 
+// *** if production then use client/build dir
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }

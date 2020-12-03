@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// Employee Schema
 const EmployeeSchema = new Schema({
   gender:{
     type:String,
