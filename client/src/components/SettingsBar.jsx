@@ -1,19 +1,11 @@
 import React from "react";
-import { Typography, Grid, Switch } from "@material-ui/core";
-import Divider from "@material-ui/core/Divider";
-import Box from "@material-ui/core/Box";
-// import Link from "@material-ui/core/Link";
-// import GitHubIcon from "@material-ui/icons/GitHub";
-// import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import SettingsIcon from "@material-ui/icons/Settings";
+import { Typography, Grid, Switch,Divider,Box } from "@material-ui/core";
+import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
-
-// import chypeTransLogo from "../assets/images/chypeShortLogo-trans.png";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   divider: {
-    // Theme Color, or use css color in quote
     backgroundColor: "#dff3fc",
   },
   footerGrid: {
@@ -29,16 +21,13 @@ const SettingsBar = (props) => {
       <hr style={{ margin: 0 }} />
       <Grid
         container
-        direction="column"
-        // justify="space-evenly"
-        // alignItems="center"
+        direction="column"        
         className={classes.footerGrid}
       >
         <Grid item>
           <SettingsIcon /> Settings Bar
         </Grid>
-      </Grid>
-      {/* <hr style={{margin:0}}/> */}
+      </Grid>      
       <Grid
         container
         direction="row"
@@ -87,18 +76,15 @@ const SettingsBar = (props) => {
           </Box>        
         </Box>
         <Divider orientation="vertical" flexItem className={classes.divider} />
-
-        
-      </Grid>
-      {/* <hr style={{margin:0}}/> */}
+      </Grid>      
     </>
   );
 };
 
+// Using Theme Provider to pass down the theme
 export default function ThemedSettingsBar(props) {
   return (
-    <ThemeProvider theme={props.theme}>
-      {/* {console.log(props.theme.palette.primary.main)} */}
+    <ThemeProvider theme={props.theme}>      
       <SettingsBar {...props} />
     </ThemeProvider>
   );
