@@ -1,16 +1,15 @@
-// import logo from './logo.svg';
 import React, { useEffect } from "react";
-import "./App.css";
-import CustomNavbar from "./components/Navbar";
-import { dark, light } from "./themes";
 import { createMuiTheme } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
-// import CustomFlipCard from "./components/FlipCard";
+// user created files
+import CustomNavbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ThemedSettingsBar from "./components/SettingsBar";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import CardLayout from "./components/CardLayout";
 import GridLayout from "./components/GridLayout";
+import { dark, light } from "./themes";
+import "./App.css";
 
 function App() {
   const [checked, setChecked] = React.useState(true);
@@ -19,10 +18,10 @@ function App() {
   const [theme, setTheme] = React.useState(createMuiTheme(light));
 
   const [data, setData] = React.useState([]);
-
   const [filterText, setFilterText] = React.useState("");
-  const handleFilter = (event) => {
-    console.log(event.target.value);
+
+  //Event handler onChange in the filter inputbox
+  const handleFilter = (event) => {    
     setFilterText(event.target.value);
   };
 
@@ -33,41 +32,30 @@ function App() {
       setFetchInProgress(false);
       setData(res.data);
     };
-
+    // function to fetch data from /api/employees
     getData();
   }, []);
 
+  // Note :- This is to set the background of the index.html
   useEffect(() => {
     document.body.style.backgroundColor = theme.palette.secondary.light;
-  });
+  });  
 
-  
-
-  const toggleTheme = (event) => {
-    // console.log("theme change=>", "before change", checked, theme.name);
+  // event handler toggleTheme
+  const toggleTheme = (event) => {    
     setChecked(!checked);
     const thm =
       theme.name === "custDark" ? createMuiTheme(light) : createMuiTheme(dark);
-    setTheme(thm);
-    // setState({
-    //   ...state,
-    //   checked: !state.checked,
-    //   // name:state.name === "dark" ? "light" : "dark",
-    //   // theme: state.name==="dark"?createMuiTheme(lightTheme):createMuiTheme(darkTheme),
-    //   theme: state.theme.name==="custDark"?createMuiTheme(light):createMuiTheme(dark),
-    // });
-    // console.log("theme change=>", "after change", checked, theme.name);
+    setTheme(thm);    
   };
 
+  // event handler toggleLayout
   const toggleLayout = () => {
     setLayoutChecked(!layoutChecked);
   };
-  useEffect(() => {
-    // console.log(state);
-  }, []);
+ 
   return (
-    <div className="App">
-      {console.log("Render=>", theme.name, checked)}
+    <div className="App">      
       <CustomNavbar theme={theme} />
       <ThemedSettingsBar
         toggleThemeHandler={toggleTheme}
@@ -93,28 +81,5 @@ function App() {
     </div>
   );
 }
-
-// function WrappedCardLayout(props){
-//   const [filterText,setFilterText]=React.useState('');
-//   const handleFilter=(event)=>{
-//     console.log(event.target);
-//     setFilterText(event.target.text);
-//   };
-//   return(
-//     <Cardayout {...props} filterHandler={handleFilter} filter={filterText}/>
-//   );
-// }
-
-// function GridLayout(props) {
-//   const data = props.data;
-//   return (
-//     <Container>
-//       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-//         {/* {data.map((d,index)=>(<FlipCard key={d._id} avatar={d.name.first[0]+d.name.last[0]} title={d.name.first + '' + d.name.last} image={d.picture.large}/>))} */}
-//         <h1>Grid Layout</h1>
-//       </div>
-//     </Container>
-//   );
-// }
 
 export default App;
